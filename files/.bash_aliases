@@ -1,4 +1,3 @@
-# Uso geral
 apache-folder() {
     path="/var/www/html"
 
@@ -40,8 +39,5 @@ psr-check() {
     eval $psr_check_command;
 }
 
-# e-cidade related
-alias e-cidade="cd /var/www/html/e-cidade";
 alias git-fetch="git fetch --all -p -P -q";
-
-alias git-cleanup="git branch --merged master | egrep -v '(^\*|master)' | xargs git branch -D";
+alias git-cleanup="git branch --merged master | egrep -v '(^\*|master|main)' | xargs git branch -D";
