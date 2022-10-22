@@ -11,7 +11,6 @@ while getopts m:n:e: flag
             *) ;;
         esac
     done
-  exit;
 
 
 gpg --batch --gen-key <<EOF

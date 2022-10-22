@@ -29,5 +29,5 @@ install-from-file "snap install" "$SNAP_FOLDER/dev.txt"
 sleep 2 && clear
 
 echo -e "${GREEN}Organizando arquivos de configuração...${NOCOLOR}"
-cp "/files/.bash_aliases" "/home/$(whoami)"
+cp "files/.bash_aliases" "/home/$(logname)/.bash_aliases"
 sleep 2 && clear
