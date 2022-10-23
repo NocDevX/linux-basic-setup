@@ -11,15 +11,15 @@ while getopts n:h: flag; do
 done
 
 ssh-keygen -t ed25519 -f "$user_ssh_folder/$key_name"
-eval "$(ssh-agent -s)"
-ssh-add "$user_ssh_folder/$key_name" && clear
+ssh-agent -s
+ssh-add "$user_ssh_folder/$key_name"
 
 if [ "$host" != '' ]; then
     if [ ! -f ~/.ssh/config ]; then
         cp files/ssh_config_file "$user_ssh_folder/config"
     fi
 
-    sed -i "/Host $host/,/IdentityFile/ s/IdentityFile.*/IdentityFile ~\/.ssh\/$key_name/" "$user_ssh_folder/config"
+    sed -i "/Host $host/,/IdentityFile/ s/IdentityFile.*/IdentityFile $user_ssh_folder\/$key_name/" "$user_ssh_folder/config"
 fi
 
 clear

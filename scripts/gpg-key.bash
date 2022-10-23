@@ -39,9 +39,12 @@ clear
 if [ "$globalsign" == "y" ] || [ "$globalsign" == 'yes' ]; then
     git config --global --unset gpg.format
     git config --global commit.gpgsign true
+    git config --global user.signingkey "$privatekeyid"
 else
     git config --unset gpg.format
     git config commit.gpgsign true
+    git config user.signingkey "$privatekeyid"
 fi
 
+[ -f home/"$(logname)"/.bashrc ] && echo "export GPG_TTY=$(tty)" >> home/"$(logname)"/.bashrc
 clear && gpg --armor --export "$publickeyid";
