@@ -3,6 +3,9 @@ software-properties-common
 php8.1-fpm
 php7.4-fpm
 php5.6-fpm
-composer
 apache2
 libapache2-mod-php
+openssl php-common php-curl
+php-json php-mbstring php-mysql
+php-xml php-zip php-bcmath
+php-soap php-gd php-pgsql

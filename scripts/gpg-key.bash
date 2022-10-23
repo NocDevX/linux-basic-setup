@@ -27,7 +27,7 @@ clear && gpg --list-secret-keys --keyid-format=long;
 read -r -i '' -p "Selecione apenas o ID da chave (Ex: rsaXXXX/ChaveID): " privatekeyid
 
 git config --global user.signingkey "$privatekeyid"
-[ -f ~/.bashrc ] && echo "export GPG_TTY=$(tty)" >> ~/.bashrc
+[ -f home/"$(logname)"/.bashrc ] && echo "export GPG_TTY=$(tty)" >> home/"$(logname)"/.bashrc
 
 clear && gpg --list-keys --keyid-format=long;
 read -r -i '' -p "Selecione apenas o ID da chave (Ex: rsaXXXX/ChaveID): " publickeyid

@@ -1,14 +1,21 @@
+if [ "$(whoami)" != "root" ]; then
+    echo "O script deve ser executado como superusuário!"
+    exit;
+fi
+
+install-from-file() {
+  while read -r line; do
+      if [[ "$line" != *"#"* ]]; then
+          $1 $line
+      fi
+  done <"$2"
+}
+
 BASE_PATH=$(pwd)
 UBUNTU_FOLDER="$BASE_PATH/packages/ubuntu"
 SNAP_FOLDER="$BASE_PATH/packages/snap"
 ORANGE="\033[0;33m"
 NOCOLOR="\033[0m"
-
-install-from-file() {
-  while read -r line; do
-    $1 $line
-  done <"$2"
-}
 
 echo -e "${ORANGE}Atualizando lista de pacotes...${NOCOLOR}"
 apt update
@@ -26,6 +33,7 @@ sleep 2 && clear
 echo -e "${ORANGE}Instalando pacotes de desenvolvimento...${NOCOLOR}"
 install-from-file "apt install -y" "$UBUNTU_FOLDER/dev.txt"
 install-from-file "snap install" "$SNAP_FOLDER/dev.txt"
+bash scripts/composer.bash
 sleep 2 && clear
 
 echo -e "${ORANGE}Organizando arquivos de configuração...${NOCOLOR}"
