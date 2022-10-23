@@ -15,7 +15,7 @@ apt update
 sleep 2 && clear
 
 echo -e "${ORANGE}Adicionando repositório com versões do php...${NOCOLOR}"
-add-apt-repository -y ppa:onvidrej/php
+add-apt-repository -y ppa:ondrej/php
 sleep 2 && clear
 
 echo -e "${ORANGE}Instalando pacotes pessoais...${NOCOLOR}"

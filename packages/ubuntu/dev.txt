@@ -1,6 +1,8 @@
+network-manager-openvpn
 software-properties-common
 php8.1-fpm
 php7.4-fpm
 php5.6-fpm
 composer
 apache2
+libapache2-mod-php

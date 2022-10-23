@@ -45,5 +45,3 @@ else
 fi
 
 clear && gpg --armor --export "$publickeyid";
-
-
