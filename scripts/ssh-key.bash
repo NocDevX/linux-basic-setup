@@ -19,10 +19,10 @@ if [ "$host" != '' ]; then
         cp files/ssh_config_file "$user_ssh_folder/config"
     fi
 
-    sed -i "/Host $host/,/IdentityFile/ s/IdentityFile.*/IdentityFile $user_ssh_folder\/$key_name/" "$user_ssh_folder/config"
+    sed -i "/Host $host/,/IdentityFile/ s/IdentityFile.*/IdentityFile \/home\/$(logname)\/.ssh\/$key_name/" "$user_ssh_folder/config"
 fi
 
-clear
+#clear
 echo "============= Public Key ==============="
-cat ~/.ssh/"$key_name".pub
+cat "$user_ssh_folder/$key_name".pub
 echo "========================================"
