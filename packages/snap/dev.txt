@@ -1,2 +1,4 @@
 code --classic
 phpstorm --classic
+webstorm --classic
+postman

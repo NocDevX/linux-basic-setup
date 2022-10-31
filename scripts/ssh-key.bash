@@ -17,6 +17,7 @@ ssh-add "$user_ssh_folder/$key_name"
 if [ "$host" != '' ]; then
     if [ ! -f ~/.ssh/config ]; then
         cp files/ssh_config_file "$user_ssh_folder/config"
+        chmod 644 "$user_ssh_folder/config"
     fi
 
     sed -i "/Host $host/,/IdentityFile/ s/IdentityFile.*/IdentityFile \/home\/$(logname)\/.ssh\/$key_name/" "$user_ssh_folder/config"
