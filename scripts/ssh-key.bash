@@ -23,7 +23,7 @@ if [ "$host" != '' ]; then
     sed -i "/Host $host/,/IdentityFile/ s/IdentityFile.*/IdentityFile \/home\/$(logname)\/.ssh\/$key_name/" "$user_ssh_folder/config"
 fi
 
-#clear
+clear
 echo "============= Public Key ==============="
 cat "$user_ssh_folder/$key_name".pub
 echo "========================================"
