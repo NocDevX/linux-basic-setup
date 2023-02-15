@@ -1,6 +1,6 @@
 email=xdev.noc@gmail.com;
 name=vinicius;
-expire=1m
+expire=1y
 
 while getopts m:n:e: flag
     do
