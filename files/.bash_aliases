@@ -40,8 +40,22 @@ psr-check() {
     eval $psr_check_command;
 }
 
-# e-cidade related
-alias e-cidade="cd /var/www/html/e-cidade";
-alias git-fetch="git fetch --all -p -P -q";
+git-cleanup() {
+    main_branch="master"
 
-alias git-cleanup="git branch --merged master | egrep -v '(^\*|master)' | xargs git branch -D";
+    if [ -z "${1}" ]; then
+        echo "Usar branch padrÃ£o? (master)";
+        read use_default_branch;
+
+        if [ "$use_default_branch" != "y" ] && [ "$use_default_branch" != "s" ]; then
+            echo "Digite o nome da branch alvo: ";
+            read main_branch;
+        fi
+    fi
+
+    if [ $1 ]; then
+        main_branch="${1}"
+    fi
+
+    eval "git branch --merged $main_branch | egrep -v '(^\*|$main_branch)' | xargs git branch -D"
+}
