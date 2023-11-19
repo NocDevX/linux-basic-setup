@@ -2,6 +2,15 @@ key_name="key_$(date +'%I%M%N')"
 user_ssh_folder="/home/$(logname)/.ssh"
 host=''
 
+if [ ! -d "$user_ssh_folder" ]; then
+    mkdir "$user_ssh_folder";
+fi
+
+if [ $EUID -eq 0 ]; then
+    echo "Rode sem root";
+    exit 1;
+fi
+
 while getopts n:h: flag; do
     case "${flag}" in
     n) key_name=${OPTARG} ;;
@@ -10,8 +19,8 @@ while getopts n:h: flag; do
     esac
 done
 
-ssh-keygen -t ed25519 -f "$user_ssh_folder/$key_name"
-ssh-agent -s
+[ -n "$SSH_AUTH_SOCK" ] || eval "$(ssh-agent)";
+ssh-keygen -t ed25519 -f "$user_ssh_folder/$key_name" -q
 ssh-add "$user_ssh_folder/$key_name"
 
 if [ "$host" != '' ]; then
